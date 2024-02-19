@@ -52,7 +52,7 @@ XmodemCRC数据包的第一个字节只能是SOH、EOT、CAN或ETB，其他任�
 
 最后一项问题应在接收方发送NAK信号后自动纠正。
 
-![xmodem](https://github.com/baoping2022/hello/tree/main/image/xmodem.png)
+![xmodem](https://github.com/baoping2022/hello/blob/main/image/xmodem.png)
 
 ## crc 计算代码示例
 
