@@ -124,9 +124,9 @@ int main(int argc, char **argv)
         for (int i = 1; i <= g_time_interval; i++) {
             index = shared->ai_index - i;
             if (index < 0)
-                index = (index + AI_POWER_SIZE) % AI_POWER_SIZE;
+                index = (index + 100) % 100;
 
-            total += shared->ai_power_1s[index];
+            total += shared->data[index];
         }
 
         average = total / g_time_interval;
