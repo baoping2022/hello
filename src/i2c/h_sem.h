@@ -1,5 +1,5 @@
-#ifndef HM800_SEM_H
-#define HM800_SEM_H
+#ifndef H_SEM_H
+#define H_SEM_H
 
 #include <sys/types.h>
 
@@ -8,4 +8,4 @@ int del_sem(int sem_id);
 int sem_p(int sem_id);
 int sem_v(int sem_id);
 
-#endif //HM800_SEM_H
+#endif //H_SEM_H

@@ -1,9 +1,3 @@
-// SPDX-License-Identifier: GPL-2.0
-/*
- * Copyright (c) 2024 Houmo AI Inc.
- * Author: baoping.fan@houmo.ai
- */
-
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>

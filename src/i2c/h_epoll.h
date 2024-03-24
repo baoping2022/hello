@@ -1,5 +1,5 @@
-#ifndef HM800_EPOLL_H
-#define HM800_EPOLL_H
+#ifndef H_EPOLL_H
+#define H_EPOLL_H
 
 typedef int (*private_callback_t)(int fd, void *data);
 struct private_data {
@@ -14,4 +14,4 @@ int epoll_event_handle(int epollfd);
 int epoll_del_fd(int epollfd, int fd);
 void epoll_final(int epollfd);
 
-#endif //HM800_EPOLL_H
+#endif //H_EPOLL_H
