@@ -60,7 +60,7 @@ enum {
 #define MAP_MASK (MAP_SIZE - 1)
 #define ADDR_BASE (0x200000000 + 0x1D400000)
 
-static int hm800_thermal_info_memcpy(char *msg)
+static int h_thermal_info_memcpy(char *msg)
 {
 	int fd;
 	void *map_base;
@@ -184,7 +184,7 @@ static int trip_high(int tz_id, int trip_id, int temp, void *arg)
 
 	fprintf(stdout, "%s", buffer);
 
-	hm800_thermal_info_memcpy(buffer);
+	h_thermal_info_memcpy(buffer);
 
 	return 0;
 }
@@ -266,7 +266,7 @@ static int gov_change(int tz_id, const char *name, __maybe_unused void *arg)
 
 static int show_sampling_temp(int tz_id, int temp, void *arg)
 {
-	//fprintf(stdout, "tz_id: %d, temperature: %d\n", tz_id, temp);
+	fprintf(stdout, "tz_id: %d, temperature: %d\n", tz_id, temp);
 
 	return 0;
 }
