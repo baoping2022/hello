@@ -8,7 +8,7 @@ char *basename(char *path);
 函数返回一个指向提取出的文件名的字符串指针。
 
 以下是一个使用basename函数的示例：
-
+`
 #include <stdio.h>
 #include <libgen.h>
 
@@ -18,6 +18,7 @@ int main() {
     printf("Filename: %s\n", filename);
     return 0;
 }
+`
 输出结果为：
 
 Filename: file.txt
