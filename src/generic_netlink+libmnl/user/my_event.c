@@ -20,13 +20,47 @@ enum nlexample_attr {
     NLE_MYVAR,
     __NLE_MAX,
 };
+#define NLE_MAX (__NLE_MAX - 1)
 
 static int group;
 
+static int data_attr_cb(const struct nlattr *attr, void *data)
+{
+    const struct nlattr **tb = data;
+    int type = mnl_attr_get_type(attr);
+
+    if (mnl_attr_type_valid(attr, NLE_MAX) < 0)
+        return MNL_CB_OK;
+
+    switch(type) {
+    case NLE_MYVAR:
+        if (mnl_attr_validate(attr, MNL_TYPE_U32) < 0) {
+                perror("mnl_attr_validate");
+                return MNL_CB_ERROR;
+        }
+        break;
+    }
+
+    tb[type] = attr;
+
+    return MNL_CB_OK;
+}
+
 static int data_cb(const struct nlmsghdr *nlh, void *data)
 {
+    struct nlattr *tb[NLE_MAX + 1] = {};
+    struct genlmsghdr *genl = mnl_nlmsg_get_payload(nlh);
+
     printf("received event type=%d from genetlink group %d\n",
             nlh->nlmsg_type, group);
+
+    mnl_attr_parse(nlh, sizeof(*genl), data_attr_cb, tb);
+
+    if (tb[NLE_MYVAR]) {
+        printf("myvar = 0x%x", mnl_attr_get_u32(tb[NLE_MYVAR]));
+    }
+
+    printf("\n");
 
     return MNL_CB_OK;
 }
@@ -36,7 +70,7 @@ int main(int argc, char *argv[])
     struct mnl_socket *nl;
     char buf[MNL_SOCKET_BUFFER_SIZE];
     int ret;
-    unsigned int seq, portid;
+    //unsigned int seq, portid;
 
     nl = mnl_socket_open(NETLINK_GENERIC);
     if (nl == NULL) {
